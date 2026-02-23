@@ -1,0 +1,1 @@
+/home/ingo/.config/omarchy/current/theme/neovim.lua
