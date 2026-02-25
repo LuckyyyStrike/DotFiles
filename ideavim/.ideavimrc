@@ -1,1 +1,67 @@
-set clipboard+=unnamed
+" =============================
+" Leader
+" =============================
+" Verhindert, dass Space im Normal Mode eine Aktion auslÃ¶st
+" map <Space> <Nop>
+let mapleader = " "
+Setze den Leader intern auf etwas ganz Exotisches
+
+" =============================
+" General
+" =============================
+set clipboard+=unnamedplus
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set relativenumber
+
+" Clear search highlight
+map <leader>h :nohlsearch<CR>
+
+" =============================
+" File / Navigation (Telescope-like)
+" =============================
+map <leader>p <Action>(GotoFile)
+map <leader>f <Action>(FindInPath)
+map <leader>b <Action>(Switcher)
+map <leader>e <Action>(ActivateProjectToolWindow)
+
+" =============================
+" Code Navigation (LSP-like)
+" =============================
+map gd <Action>(GotoDeclaration)
+map gr <Action>(FindUsages)
+map gi <Action>(GotoImplementation)
+map gb <Action>(Back)
+map gB <Action>(Forward)
+map K  <Action>(QuickJavaDoc)
+map <leader>rn <Action>(RenameElement)
+map <leader><CR> <Action>(ShowPopupMenu)
+map <leader>. <Action>(ShowIntentionActions)
+
+" =============================
+" Editing
+" =============================
+" Insert empty line without insert mode
+map <leader>o <Action>(EditorStartNewLine)
+map [<Space>] <Action>(EditorStartNewLineAbove)
+
+" Commenting (vim-commentary style)
+map gcc <Action>(CommentByLineComment)
+map gc  <Action>(CommentByLineComment)
+
+" Reformat file
+map <leader>= <Action>(ReformatCode)
+
+" =============================
+" Windows / Splits
+" =============================
+map <leader>sv <Action>(SplitVertically)
+map <leader>sh <Action>(SplitHorizontally)
+map <leader>w  <Action>(CloseActiveTab)
+
+" =============================
+" Reload config
+" =============================
+map <leader>vr :source $MYVIMRC<CR>
