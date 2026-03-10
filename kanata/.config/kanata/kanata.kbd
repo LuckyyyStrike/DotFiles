@@ -1,0 +1,54 @@
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  rapid-event-delay 5
+)
+
+(defsrc
+  lmet lalt lctl lsft rsft rctl ralt rmet caps
+  a    s    d    f    g    h    j    k    l    ;
+)
+
+(deflayer base
+  XX   XX   @nav @num-r @num-l XX   XX   XX   @caps
+  @a   @s   @d   @f   g    h    @j   @k   @l   @semi
+)
+
+(deflayer nav
+  _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    left down up   right _
+)
+
+(deflayer num-l
+  _    _    _    _    _    _    _    _    _
+  1    2    3    4    5    _    _    _    _    _
+)
+
+(deflayer num-r
+  _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    6    7    8    9    0
+)
+
+(defvar
+  tap-time 200           
+
+  hold-index  200            
+  hold-middle 230           
+  hold-ring   260          
+  hold-pinky  290         
+)
+
+(defalias
+  a    (tap-hold-release $tap-time $hold-pinky a lmet)
+  s    (tap-hold-release $tap-time $hold-ring s lalt)
+  d    (tap-hold-release $tap-time $hold-middle d lctl)
+  f    (tap-hold-release $tap-time $hold-index f lsft)
+  j    (tap-hold-release $tap-time $hold-index j rsft)
+  k    (tap-hold-release $tap-time $hold-middle k rctl)
+  l    (tap-hold-release $tap-time $hold-ring l ralt)
+  semi (tap-hold-release $tap-time $hold-pinky ; rmet)
+  nav  (layer-while-held nav)
+  num-l (layer-while-held num-l)
+  num-r (layer-while-held num-r)
+  caps (tap-hold-release $tap-time $hold-pinky esc ralt)
+)
